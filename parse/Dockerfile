@@ -9,12 +9,17 @@ COPY ./scripts/ ./scripts/
 # Install necessary dependencies as root
 USER root
 RUN apk --no-cache add git \
- && npm install --omit=dev netreconlab/parse-server-carekit#main parse-server-any-analytics-adapter@^1.x.x @analytics/google-analytics@^1.x.x @analytics/segment@^1.x.x \
- && npm install --omit=dev @parse/s3-files-adapter@^2.x.x parse-server-api-mail-adapter@^4.x.x mailgun.js@^10.x.x \
- && npm install --omit=dev clamscan@^2.x.x newrelic@^11.x.x \
- && mkdir ./files \
- && chmod +x ./scripts/wait-for-postgres.sh ./scripts/parse_idempotency_delete_expired_records.sh ./scripts/setup-dbs.sh ./scripts/setup-parse-index.sh ./scripts/setup-pgaudit.sh \
- && chown -R node ./files ./scripts
+    && npm install --omit=dev netreconlab/parse-server-carekit#main parse-server-any-analytics-adapter@^1.x.x @analytics/google-analytics@^1.x.x @analytics/segment@^1.x.x \
+    && npm install --omit=dev @parse/s3-files-adapter@^2.x.x parse-server-api-mail-adapter@^4.x.x mailgun.js@^10.x.x \
+    && npm install --omit=dev clamscan@^2.x.x newrelic@^11.x.x \
+    && npm install --omit=dev underscore \
+    && npm install --omit=dev sharp \
+    && npm install --omit=dev @parse/gcs-files-adapter   \
+    && npm install --omit=dev apple-signin-auth \
+    && npm install --omit=dev authy-client \
+    && mkdir ./files \
+    && chmod +x ./scripts/wait-for-postgres.sh ./scripts/parse_idempotency_delete_expired_records.sh ./scripts/setup-dbs.sh ./scripts/setup-parse-index.sh ./scripts/setup-pgaudit.sh \
+    && chown -R node ./files ./scripts
 
 ############################################################
 # Release stage
@@ -27,6 +32,7 @@ USER root
 # Install apps needed for image
 RUN apk --no-cache add bash postgresql-client
 
+# RUN chown -R node:node /parse-server/package.json
 # Complete parse-hipaa setup as node
 USER node
 

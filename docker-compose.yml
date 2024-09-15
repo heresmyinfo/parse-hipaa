@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
     parse:
-        image: netreconlab/parse-hipaa:latest
+        image: heresmyinfo/parse-hipaa:2.0
         environment:
             CLUSTER_INSTANCES: 1
             PARSE_SERVER_APPLICATION_ID: E036A0C5-6829-4B40-9B3B-3E05F6DF32B2
@@ -12,11 +12,11 @@ services:
             PARSE_SERVER_ENCRYPTION_KEY: 72F8F23D-FDDB-4792-94AE-72897F0688F9
             PARSE_SERVER_TRUST_PROXY: 'true'
             PARSE_SERVER_OBJECT_ID_SIZE: 32
-            PARSE_SERVER_DATABASE_URI: postgres://${PG_PARSE_USER}:${PG_PARSE_PASSWORD}@db:${DB_PORT}/${PG_PARSE_DB}
+            PARSE_SERVER_DATABASE_URI: mongodb://${MONGO_PARSE_USER}:${MONGO_PARSE_PASSWORD}@db:${DB_MONGO_PORT}/${MONGO_PARSE_DB}
             PORT: ${PORT}
             PARSE_SERVER_MOUNT_PATH: ${MOUNT_PATH}
             PARSE_SERVER_URL: http://parse:${PORT}${MOUNT_PATH}
-            PARSE_SERVER_PUBLIC_URL: http://localhost:${PORT}${MOUNT_PATH}
+            PARSE_PUBLIC_SERVER_URL: http://localhost:${PORT}${MOUNT_PATH}
             PARSE_SERVER_CLOUD: /parse-server/cloud/main.js
             PARSE_SERVER_MOUNT_GRAPHQL: 'false'
             PARSE_SERVER_ALLOW_CLIENT_CLASS_CREATION: 'false' # Don't allow classes to be created on the client side. You can create classes by using ParseDashboard instead
@@ -24,40 +24,34 @@ services:
             PARSE_SERVER_ENABLE_SCHEMA_HOOKS: 'true'
             PARSE_SERVER_DIRECT_ACCESS: 'false' # WARNING: Setting to 'true' is known to cause crashes on parse-hipaa running postgres
             PARSE_SERVER_ENABLE_PRIVATE_USERS: 'true'
-            PARSE_SERVER_USING_PARSECAREKIT: 'true' # If you are not using ParseCareKit, set this to 'false' 
+            PARSE_SERVER_USING_PARSECAREKIT: 'false' # If you are not using ParseCareKit, set this to 'false'
             PARSE_SERVER_RATE_LIMIT: 'false'
             PARSE_SERVER_RATE_LIMIT_REQUEST_COUNT: '100'
             PARSE_SERVER_RATE_LIMIT_INCLUDE_PRIMARY_KEY: 'false'
             PARSE_SERVER_RATE_LIMIT_INCLUDE_INTERNAL_REQUESTS: 'false'
             PARSE_VERBOSE: 'false'
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # Needed for wait-for-postgres.sh
         ports:
             - 127.0.0.1:${PORT}:${PORT}
         volumes:
-            - ./scripts/wait-for-postgres.sh:/parse-server/wait-for-postgres.sh
             - ./parse/index.js:/parse-server/index.js
             - ./parse/cloud:/parse-server/cloud
-            - ./files:/parse-server/files # All files uploaded from users are stored to an ecrypted drive locally for HIPAA compliance
-        command: ["./wait-for-postgres.sh", "db", "node", "index.js"]
+        restart: always
         depends_on:
             - db
+        command: [ "node", "index.js" ]
     db:
-        image: netreconlab/hipaa-postgres:latest
+        image: netreconlab/hipaa-mongo:latest
         environment:
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-            PG_PARSE_USER: ${PG_PARSE_USER}
-            PG_PARSE_PASSWORD: ${PG_PARSE_PASSWORD}
-            PG_PARSE_DB: ${PG_PARSE_DB}
-            PMM_USER: ${PMM_USER}
-            PMM_PASSWORD: ${PMM_PASSWORD}
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_PARSE_USER}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PARSE_PASSWORD}
+            MONGO_INITDB_DATABASE: ${MONGO_PARSE_DB}
         restart: always
         ports:
-            - 127.0.0.1:${DB_PORT}:${DB_PORT}
+            - 127.0.0.1:${DB_MONGO_PORT}:${DB_MONGO_PORT}
         # Uncomment volumes below to persist postgres data. Make sure to change directory to store data locally
-   #     volumes:
-   #         - /My/Encrypted/Drive/data:/var/lib/postgresql/data #Mount your own drive
-   #         - /My/Encrypted/Drive/archivedir:/var/lib/postgresql/archivedir #Mount your own drive
+        #volumes:
+        #  - /My/Encrypted/Drive/db:/data/db
+        #  - /My/Encrypted/Drive/logs/:/logs
     dashboard:
         image: netreconlab/parse-hipaa-dashboard:latest
         environment:
@@ -70,15 +64,6 @@ services:
             - 127.0.0.1:${DASHBOARD_PORT}:${DASHBOARD_PORT}
         depends_on:
             - parse
-   # monitor:
-   #     image: percona/pmm-server:2
-   #     restart: always
-   #     ports:
-   #         - 127.0.0.1:1080:${PMM_PORT} # Unsecure connections
-   #         - 127.0.0.1:1443:${PMM_TLS_PORT} # Secure connections
-        # Uncomment volumes below to persist postgres data. Make sure to change directory to store data locally
-    #    volumes:
-    #        - /My/Encrypted/Drive/srv:/srv
-   # scan:
-   #     image: clamav/clamav:latest
-   #     restart: always
+    #scan:
+    #    image: clamav/clamav:latest
+    #    restart: always
