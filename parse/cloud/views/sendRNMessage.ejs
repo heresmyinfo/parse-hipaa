@@ -1,0 +1,43 @@
+<html>
+<header>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <style>
+  html, body, div, p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  }
+
+  .full-screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #00A956;
+  }
+
+  .primary-text {
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18pt;
+}
+  </style>
+</header>
+<body>
+  <div class='full-screen'>
+    <p class='primary-text'>Loading...</p>
+  </div>
+  <script>
+  var data = '<%- JSON.stringify(data) %>';
+  if (window.ReactNativeWebView !== undefined) {
+    window.ReactNativeWebView.postMessage(data);
+  }
+  </script>
+</body>
+</html>

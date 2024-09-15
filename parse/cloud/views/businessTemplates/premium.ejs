@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=.9"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <!--320-->
+  <title>Business Normal</title>
+  <link href="/public/css/style.css" rel="stylesheet">
+  <link href="/public/css/HMI.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-6">
+          <h3 id="companyName">
+
+          </h3>
+        </div>
+        <div class="col-xs-3 offset-xs-3">
+          <h3 id="companyLogo">
+            LOGO
+          </h3>
+        </div>
+        <div class="col-xs-12">
+          <h4>
+            InfoPage
+          </h4>
+        </div>
+        <div class="col-xs-12">
+          <p id="companyDesc">
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>
+          Closest Places
+        </h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Address</th>
+              <th scope="col">Distance</th>
+              <th scope="col">phone</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1640 Hoofe Road</td>
+              <td>3 Miles</td>
+              <td><a href="tel:+14123815500">+1 (338) 504-4538</a></td>
+              <td>Open</td>
+            </tr>
+            <tr>
+              <td>1446 Esiip Square</td>
+              <td>13 Miles</td>
+              <td>+1 (863) 541-1384</td>
+              <td>Open</td>
+            </tr>
+            <tr>
+              <td>1838 Duuk Point</td>
+              <td>22 Miles</td>
+              <td>+1 (877) 249-9726</td>
+              <td>Open</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="col-xs-12 col-md-6" id="myProfile">
+          Promotions on Disks
+        </h3>
+      </div>
+      <div class="col-xs-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Distance</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1640 Hoofe Road</td>
+              <td>3 $</td>
+
+            </tr>
+            <tr>
+              <td>1446 Esiip Square</td>
+              <td>13 $</td>
+            </tr>
+            <tr>
+              <td>1838 Duuk Point</td>
+              <td>22 $</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+
+
+
+
+    <!-- .container -->
+    </main>
+
+    <script>
+      setTimeout(function () {
+        window.postMessage({ type: "phoneNumber", phoneNumber: "+351932174951" });
+      }, 1000);
+
+      // window.addEventListener('message', function (event) {
+      //   console.log('message', event, event.origin);
+      //   // if (event.origin !== "https://example.com")
+      //   //   return;
+      //   var text = document.getElementById('companyName')
+      //   text.innerText = (window.sessionStorage && window.sessionStorage['companyName']) ? window.sessionStorage['companyName'] : text.innerText;
+      //   text.style.color = "blue"
+      //   //document.body.appendChild(text);
+      // });
+    </script>
+
+    <!-- Parse -->
+    <script src="/public/parse.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- jQuery UI -->
+    <!-- <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
+    <!--Tether
+    
+    <script src="/public/tether.1.3.3/js/tether.js"></script>
+    <link href="/public/tether.1.3.3/css/tether.css"></link> -->
+    <!-- Bootstrap -->
+    <script href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/bootstrap.min.css"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+    <!-- jQuery Validate plugin-->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+    <!-- Underscore -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <!-- Custom -->
+    <script src="/public/js/menu.js"></script>
+
+</body>
+
+</html>

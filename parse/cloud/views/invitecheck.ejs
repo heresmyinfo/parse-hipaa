@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=.9"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <!--320-->
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+
+  <link href="/public/css/style.css" rel='stylesheet' type='text/css'>
+
+
+  <!-- Roboto Font -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+
+</head>
+
+<style>
+  .brand-background {
+    background-color: #00A956;
+  }
+
+  .primary-text {
+    color: #FFFFFF;
+    width: 80%;
+    text-align: center;
+    font-size: 18pt;
+    font-family: 'Roboto';
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+
+<body class="text-center brand-background">
+  <!-- Parse -->
+  <script>
+    var WEB_SERVER_URL = '<%= process.env.WEB_SERVER_URL %>';
+    var PARSE_APP_ID = '<%= process.env.APP_ID %>';
+    var PARSE_JAVASCRIPT_KEY = '<%= process.env.JAVASCRIPT_KEY %>';
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/1.9.2/parse.js"></script>
+  <script src="/public/parse.js"></script>
+
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- jQuery Validate plugin-->
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+  <!-- additional methods for jQuery Validate plugin-->
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <!-- Custom script -->
+  <script src="/public/invitecheck.js"></script>
+
+
+  <div class="primary-text centered" id="searching">
+    <p>We're checking to see if you have any invitations...</p>
+    <div class="sk-fading-circle">
+      <div class="sk-circle1 sk-circle"></div>
+      <div class="sk-circle2 sk-circle"></div>
+      <div class="sk-circle3 sk-circle"></div>
+      <div class="sk-circle4 sk-circle"></div>
+      <div class="sk-circle5 sk-circle"></div>
+      <div class="sk-circle6 sk-circle"></div>
+      <div class="sk-circle7 sk-circle"></div>
+      <div class="sk-circle8 sk-circle"></div>
+      <div class="sk-circle9 sk-circle"></div>
+      <div class="sk-circle10 sk-circle"></div>
+      <div class="sk-circle11 sk-circle"></div>
+      <div class="sk-circle12 sk-circle"></div>
+    </div>
+  </div>
+  <div class="primary-text centered" id="problems" style="display:none">
+    <h3>
+      <img id="hmilogo" alt="HMI Logo" height="90px" src="/public/assets/images/logo_rotate_colors.gif" />
+      It seems we have a server problem. Sorry for any inconvenience.
+    </h3>
+    <h3>
+      Please try again later.
+    </h3>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- jQuery Validate plugin-->
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <!-- Custom -->
+</body>
+
+</html>

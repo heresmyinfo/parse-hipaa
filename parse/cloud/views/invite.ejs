@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="apple-touch-icon" href="/public/images/apple-touch-icon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link href="/public/css/style.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- Roboto Font -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+  <!-- Parse app configuration options -->
+  <script>
+    var WEB_SERVER_URL = '<%= process.env.WEB_SERVER_URL %>';
+    var PARSE_APP_ID = '<%= process.env.APP_ID %>';
+    var PARSE_JAVASCRIPT_KEY = '<%= process.env.JAVASCRIPT_KEY %>';
+  </script>
+  <!-- Bootstrap -->
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+ 
+
+  <!-- Analytics -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-125139789-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script>
+    $(document).ready(function () {
+
+      $('.submit-button-mobile').on('click touchstart', function (e) {
+        e.preventDefault();
+        tryToGoToApp();
+        mixpanel.track("Invite landing page displayed");
+      });
+    });
+  </script>
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function (c, a) {
+      if (!a.__SV) {
+        var b = window; try { var d, m, j, k = b.location, f = k.hash; d = function (a, b) { return (m = a.match(RegExp(b + "=([^&]*)"))) ? m[1] : null }; f && d(f, "state") && (j = JSON.parse(decodeURIComponent(d(f, "state"))), "mpeditor" === j.action && (b.sessionStorage.setItem("_mpcehash", f), history.replaceState(j.desiredHash || "", c.title, k.pathname + k.search))) } catch (n) { } var l, h; window.mixpanel = a; a._i = []; a.init = function (b, d, g) {
+          function c(b, i) {
+            var a = i.split("."); 2 == a.length && (b = b[a[0]], i = a[1]); b[i] = function () {
+              b.push([i].concat(Array.prototype.slice.call(arguments,
+                0)))
+            }
+          } var e = a; "undefined" !== typeof g ? e = a[g] = [] : g = "mixpanel"; e.people = e.people || []; e.toString = function (b) { var a = "mixpanel"; "mixpanel" !== g && (a += "." + g); b || (a += " (stub)"); return a }; e.people.toString = function () { return e.toString(1) + ".people (stub)" }; l = "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+          for (h = 0; h < l.length; h++)c(e, l[h]); var f = "set set_once union unset remove delete".split(" "); e.get_group = function () { function a(c) { b[c] = function () { call2_args = arguments; call2 = [c].concat(Array.prototype.slice.call(call2_args, 0)); e.push([d, call2]) } } for (var b = {}, d = ["get_group"].concat(Array.prototype.slice.call(arguments, 0)), c = 0; c < f.length; c++)a(f[c]); return b }; a._i.push([b, d, g])
+        }; a.__SV = 1.2; b = c.createElement("script"); b.type = "text/javascript"; b.async = !0; b.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ?
+          MIXPANEL_CUSTOM_LIB_URL : "file:" === c.location.protocol && "//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js"; d = c.getElementsByTagName("script")[0]; d.parentNode.insertBefore(b, d)
+      }
+    })(document, window.mixpanel || []);
+    mixpanel.init("9866c322359d726d04c5e3a8fcbed59c");
+  </script>
+  <!-- end Mixpanel -->
+
+
+</head>
+
+<style>
+  .brand-background {
+    background-color: #FFFFFF;
+  }
+
+  .brand-button {
+    background-color: #00A956;
+    color: #FFFFFF;
+    min-height: 60px;
+    width: 100%;
+    text-align: center;
+    font-size: 16pt;
+    font-family: 'Roboto';
+    padding: 10px;
+    border: none;
+    margin: 0px auto 20px;
+  }
+
+  .brand-header {
+    max-height: 100px;
+    height: auto;
+    max-width: 80%;
+    text-align: center;
+    margin: 30px auto 30px;
+  }
+
+  .button-container {
+    width: 80%;
+    margin: 0px auto;
+    float: center;
+    margin-top: 40px;
+  }
+
+  .invitation-card {
+    margin: 10px;
+    min-height: 10px;
+  }
+
+  .invitation-font {
+    text-align: center;
+    font-size: 20pt;
+    font-family: 'Roboto';
+    padding: 15px;
+    margin: 0px auto 20px;
+  }
+
+  .image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .col-centered{ margin: auto;}
+    
+</style>
+
+<body class="brand-background">
+  <div class="centered">
+    <div class="row">
+      <div class="col-xs-12">
+        <img class="brand-header" src="/public/images/banner.png" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 invitation-card">
+        <h3 id="mainMessage">waiting...</h3>
+        <div class="invitation-font">
+          <div id="currentUserEmail"></div>
+          <div class="col-md-6 col-md-offset-3" id="currentMessage">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- <button type="submit" class="brand-button submit-button-mobile" id="openInApp">Open invitation in Mobile App</button> -->
+      <div class="col-lg-3 text-center">
+        <h4 class="text-center">Install HeresMyInfo to see everything this user is sharing with you.</h4>
+      </div>
+      <div class="button-container" id="mobileView">
+        <!-- test code -->
+
+        <!--  -->
+        <button type="submit" class="brand-button submit-button-mobile" id="openInApp">Open invitation in Mobile
+          App</button>
+        <!-- <button type="submit" class="brand-button" id="gotoWebPage">Open invitation in WebPage</button> -->
+        <!--button type="submit" class="brand-button" id="installApp">Get the Mobile app</button-->
+      </div>
+      <div class="button-container" id="desktopView" style="align-content:center">
+        <h3 class="text-center" style="margin-top: 100px">Get your app for Android or IOS</h3>
+        <img class="image-center" id="markets" width="60%" src="/public/images/markets.png" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var toEmail = '<%= to_email %>';
+    var toPhone = '<%= to_phone %>';
+    var appStoreUrl = '<%= process.env.APP_STORE_URL %>';
+  </script>
+  <!-- Parse -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/1.9.2/parse.js"></script>
+  <!--<script src="/public/parse.js"></script>-->
+  <!-- jQuery -->
+
+  <!-- jQuery Validate plugin-->
+  <script src="//cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+  <!-- additional methods for jQuery Validate plugin-->
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <!-- Custom script -->
+  <script src="/public/invite.js"></script>
+  <script src="/public/parse.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- jQuery Validate plugin-->
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+   <!-- Custom -->
+</body>
+
+</html>
