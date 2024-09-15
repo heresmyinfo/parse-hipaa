@@ -17,6 +17,41 @@ RUN apk --no-cache add git \
     && npm install --omit=dev @parse/gcs-files-adapter   \
     && npm install --omit=dev apple-signin-auth \
     && npm install --omit=dev authy-client \
+    && npm install --omit=dev bcrypt \
+    && npm install --omit=dev body-parser \
+    && npm install --omit=dev check-node-version \
+    && npm install --omit=dev connect-redis \
+    && npm install --omit=dev convict \
+    && npm install --omit=dev cookie \
+    && npm install --omit=dev cors \
+    && npm install --omit=dev date-fns \
+    && npm install --omit=dev ejs \
+    && npm install --omit=dev express \
+    && npm install --omit=dev express-session \
+    && npm install --omit=dev google-auth-library \
+    && npm install --omit=dev grant-express \
+    && npm install --omit=dev grunt \
+    && npm install --omit=dev lru-cache \
+    && npm install --omit=dev mailgun \
+    && npm install --omit=dev mailgun-js \
+    && npm install --omit=dev mime \
+    && npm install --omit=dev mixpanel \
+    && npm install --omit=dev mocha \
+    && npm install --omit=dev mongoose \
+    && npm install --omit=dev morgan \
+    && npm install --omit=dev nanoid \
+    && npm install --omit=dev nginx \
+    && npm install --omit=dev node-fetch \
+    && npm install --omit=dev node-oauth \
+    && npm install --omit=dev nodemon \
+    && npm install --omit=dev oauth \
+    && npm install --omit=dev object.fromentries \
+    && npm install --omit=dev parse-server-mailgun \
+    && npm install --omit=dev path \
+    && npm install --omit=dev plivo \
+    && npm install --omit=dev probe-image-size \
+    && npm install --omit=dev redis \
+    && npm install --omit=dev yn \
     && mkdir ./files \
     && chmod +x ./scripts/wait-for-postgres.sh ./scripts/parse_idempotency_delete_expired_records.sh ./scripts/setup-dbs.sh ./scripts/setup-parse-index.sh ./scripts/setup-pgaudit.sh \
     && chown -R node ./files ./scripts
